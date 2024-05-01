@@ -1,6 +1,6 @@
 // ===================================================================
 // Flexbox Grid Mixins (LibSass)
-// Version 0.3.4
+// Version 0.3.5
 // Description: Sass Mixins to generate Flexbox grid
 // Author: thingsym
 // GitHub: https://github.com/thingsym/flexbox-grid-mixins
@@ -8,6 +8,9 @@
 // ===================================================================
 
 @charset 'utf-8';
+
+// Built-In Modules
+@use "sass:math";
 
 $flexbox-grid-mixins-grid-type: skeleton !default;
 $flexbox-grid-mixins-box-sizing: border-box !default;
@@ -87,7 +90,7 @@ $flexbox-grid-mixins-stack: margin-bottom !default;
 
 	@if type-of($col) == number and unitless($col) == true {
 		$flex-shrink: 0;
-		$flex-basis: percentage($col / $grid-columns);
+		$flex-basis: percentage(math.div($col, $grid-columns));
 
 		@if $flexbox-grid-mixins-grid-type == skeleton {
 			@if $gutter and unit($gutter) == '%' {
